@@ -1,0 +1,22 @@
+{
+  "name": "@snippy/db",
+  "version": "0.0.0",
+  "main": "./index.ts",
+  "types": "./index.ts",
+  "license": "MIT",
+  "scripts": {
+    "db:rm": "docker compose rm db -s -f -v",
+    "db:up": "docker compose up db -d",
+    "db:push": "prisma db push",
+    "db:deploy": "prisma db deploy",
+    "db:generate": "prisma db generate",
+    "db:studio": "prisma studio --port 5556"
+  },
+  "dependencies": {
+    "@prisma/client": "^4.3.1"
+  },
+  "devDependencies": {
+    "prisma": "^4.3.1",
+    "typescript": "^4.8.3"
+  }
+}

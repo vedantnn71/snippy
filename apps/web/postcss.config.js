@@ -1,0 +1,1 @@
+module.exports = require("@snippy/config/postcss.config");

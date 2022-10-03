@@ -1,0 +1,22 @@
+{
+  "name": "@snippy/primitives",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@snippy/config": "*",
+    "@radix-ui/colors": "^0.1.8",
+    "@radix-ui/react-checkbox": "^1.0.0",
+    "@radix-ui/react-icons": "^1.1.1",
+    "@radix-ui/react-label": "^1.0.0",
+    "@stitches/react": "^1.2.8",
+    "classnames": "^2.3.2",
+    "tailwindcss-radix": "^2.6.0"
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "name": "snippy",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "lint": "turbo run lint",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "prepare": "husky install",
+    "web:dev": "cd apps/web && pnpm dev",
+    "web:build": "cd apps/web && pnpm build",
+    "db:rm": "cd packages/db && pnpm db:rm",
+    "db:up": "cd packages/db && pnpm db:up",
+    "db:push": "cd packages/db && pnpm db:push",
+    "db:generate": "cd packages/db && pnpm db:generate",
+    "db:studio": "cd packages/db && pnpm db:studio"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^17.1.2",
+    "@commitlint/config-conventional": "^17.1.0",
+    "husky": "^8.0.1",
+    "prettier": "latest",
+    "turbo": "latest"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "packageManager": "pnpm@7.11.0"
+}
