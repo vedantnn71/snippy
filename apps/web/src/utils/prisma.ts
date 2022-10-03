@@ -1,4 +1,4 @@
-import { prisma } from "@dive/db";
+import { prisma } from "@snippy/db";
 import { PrismaClient } from "@prisma/client";
 
 declare global {
