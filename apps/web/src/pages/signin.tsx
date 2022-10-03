@@ -29,7 +29,7 @@ const SignIn: NextPage = () => {
         <div className="flex animate-fade-in flex-col justify-center text-center">
           <span className="text-sm font-medium text-gray-9 mb-6">Sign in with</span>
 
-          <div className="grid md:grid-cols-2 grid-rows-auto gap-4 sm:grid-cols-4">
+          <div className="grid lg:grid-cols-2 sm:grid-rows-4 lg:grid-rows-2 md:grid-cols-1 gap-5">
             <OAuthButton provider="google" />
             <OAuthButton provider="github" />
             <OAuthButton provider="twitter" />
