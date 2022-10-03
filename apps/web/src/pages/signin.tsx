@@ -1,9 +1,21 @@
 import { OAuthButton } from "@/components";
 import { Logo } from "@snippy/primitives";
 import { NextPage } from "next";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 import Link from "next/link";
 
 const SignIn: NextPage = () => {
+  const session = useSession();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (session.status === "authenticated") {
+      router.push("/lists");
+    }
+  }, [session.status]);
+
   return (
     <div className="bg-gray-12 flex min-h-screen flex-col items-center justify-center space-y-8 py-12 sm:px-6 lg:space-y-12 lg:px-8">
       <Link href="/">

@@ -1,17 +1,27 @@
-import type { AppType } from "next/app";
+import type { AppProps } from "next/app";
+import { SessionProvider } from "next-auth/react";
+import { Session } from "next-auth";
 import { trpc } from "@/utils/trpc";
 import Head from "next/head";
 import "@/styles/fonts.css";
 import "@/styles/globals.css";
+import { Protect } from "@/components";
 
-const App: AppType = ({ Component, pageProps }) => {
+const App = ({
+  Component,
+  pageProps: { session, ...pageProps }
+}: AppProps<{ session: Session }>) => {
   return (
     <>
       <Head>
         <meta title="color-scheme" content="dark only" />
       </Head>
 
-      <Component {...pageProps} />
+      <SessionProvider session={session}>
+        <Protect>
+          <Component {...pageProps} />
+        </Protect>
+      </SessionProvider>
     </>
   );
 };
