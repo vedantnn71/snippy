@@ -1,6 +1,6 @@
 import { Icon } from "@snippy/primitives";
+import { Button } from "@snippy/primitives";
 import { useState } from "react";
-import { Button } from "./button";
 import { signIn } from "next-auth/react";
 
 interface IOAuthButton {

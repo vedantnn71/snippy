@@ -1,6 +1,5 @@
 import { IButtonProps, ButtonSize, ButtonColor } from "./types";
-import { Loading } from "@snippy/primitives";
-import { useState } from "react";
+import { Loading } from "../loading";
 import cx from "classnames";
 
 export const Button = ({
