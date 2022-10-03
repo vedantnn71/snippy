@@ -21,15 +21,17 @@ const SignIn: NextPage = () => {
       <Link href="/">
         <div className="flex flex-row items-center gap-4">
           <Logo />
-          <h1 className="text-4xl text-gray-1 font-bold">Snippy</h1>
+          <h1 className="text-gray-1 text-4xl font-bold">Snippy</h1>
         </div>
       </Link>
 
-      <div className="pt-8 pb-12 px-12 shadow-primary rounded-2xl">
-        <div className="flex animate-fade-in flex-col justify-center text-center">
-          <span className="text-sm font-medium text-gray-9 mb-6">Sign in with</span>
+      <div className="shadow-primary rounded-2xl px-12 pt-8 pb-12">
+        <div className="animate-fade-in flex flex-col justify-center text-center">
+          <span className="text-gray-9 mb-6 text-sm font-medium">
+            Sign in with
+          </span>
 
-          <div className="grid lg:grid-cols-2 sm:grid-rows-4 lg:grid-rows-2 md:grid-cols-1 gap-5">
+          <div className="grid gap-5 sm:grid-rows-4 md:grid-cols-1 lg:grid-cols-2 lg:grid-rows-2">
             <OAuthButton provider="google" />
             <OAuthButton provider="github" />
             <OAuthButton provider="twitter" />
@@ -38,7 +40,7 @@ const SignIn: NextPage = () => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default SignIn
+export default SignIn;

@@ -9,7 +9,7 @@ import { Protect } from "@/components";
 
 const App = ({
   Component,
-  pageProps: { session, ...pageProps }
+  pageProps: { session, ...pageProps },
 }: AppProps<{ session: Session }>) => {
   return (
     <>

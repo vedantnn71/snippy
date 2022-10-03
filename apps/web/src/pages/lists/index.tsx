@@ -5,6 +5,6 @@ const Lists = () => {
       <p>Find me in "./web/src/pages/lists/index.tsx"</p>
     </div>
   );
-}
+};
 
 export default Lists;

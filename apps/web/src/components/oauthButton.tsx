@@ -24,13 +24,8 @@ export const OAuthButton = ({ provider }: IOAuthButton) => {
       loading={loading}
       onClick={handleOAuth}
     >
-      <Icon
-        name={provider}
-        size={24}
-        type="logos"
-        color="#fff"
-      />
+      <Icon name={provider} size={24} type="logos" color="#fff" />
       <span className="text-sm">{`Sign in with ${provider}`}</span>
     </Button>
-  )
-}
+  );
+};

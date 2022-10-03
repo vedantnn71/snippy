@@ -1,4 +1,4 @@
-import Image from "next/image"
+import Image from "next/image";
 import logo from "./assets/logo.svg";
 
 export interface ILogoProps {
@@ -7,4 +7,4 @@ export interface ILogoProps {
 
 export const Logo = ({ size = 50 }: ILogoProps) => (
   <Image src={logo} alt="Snippy" width={size} height={size} />
-)
+);

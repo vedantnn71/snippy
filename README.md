@@ -3,8 +3,7 @@
 </div>
 <h2 align="center">Snippy - Organize your code snippets and commands</h2>
 
-Snippy helps you in organizing your code snippets and commands, save snippets and commands that you use very often in snippy and then use them in your ide. 
-
+Snippy helps you in organizing your code snippets and commands, save snippets and commands that you use very often in snippy and then use them in your ide.
 
 ## Project structure
 
@@ -38,7 +37,9 @@ packages
 1. Pnpm
 
 ---
+
 First of all, start the postgres database server, sync the database with the schema and generate the client to be used:
+
 ```bash
 $ pnpm db:up
 $ pnpm db:push

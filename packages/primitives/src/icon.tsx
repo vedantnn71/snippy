@@ -21,7 +21,6 @@ export const Icon = ({
   />
 );
 
-
 const getIconPrefix = (type: "solid" | "regular" | "logos"): IconPrefix => {
   let prefix: IconPrefix = "bx";
 
@@ -40,4 +39,4 @@ const getIconPrefix = (type: "solid" | "regular" | "logos"): IconPrefix => {
   }
 
   return prefix;
-}
+};

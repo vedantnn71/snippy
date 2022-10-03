@@ -17,22 +17,24 @@ export const Button = ({
   return (
     <button
       className={cx(
-        "flex items-center justify-center gap-2 px-4 py-3 rounded-xl",
-        "outline-none transition-all duration-200 ease-in-out border-[1px] border-[#4C5155]",
+        "flex items-center justify-center gap-2 rounded-xl px-4 py-3",
+        "border-[1px] border-[#4C5155] outline-none transition-all duration-200 ease-in-out",
         sizeClasses,
         colorClasses,
         disabled ? "cursor-not-allowed" : "cursor-pointer",
-        !disabled && "hover:scale-[98%] active:scale-95",
+        !disabled && "hover:scale-[98%] active:scale-95"
       )}
       onClick={onClick}
       disabled={disabled}
     >
       {loading ? (
-        <div className="flex gap-2 items-center justify-center">
+        <div className="flex items-center justify-center gap-2">
           <Loading size={24} />
           <span className="text-slate-8">Loading...</span>
         </div>
-      ) : children}
+      ) : (
+        children
+      )}
     </button>
   );
 };
@@ -55,7 +57,7 @@ const getSize = (size: ButtonSize): string => {
   }
 
   return sizeClass;
-}
+};
 
 const getColor = (color: ButtonColor): string => {
   let colorClass = "";
@@ -71,4 +73,4 @@ const getColor = (color: ButtonColor): string => {
   }
 
   return colorClass;
-}
+};

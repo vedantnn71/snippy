@@ -6,10 +6,5 @@ export interface ILoadingProps {
 }
 
 export const Loading = ({ size }: ILoadingProps) => (
-  <Image
-    src={spinner}
-    height={size}
-    width={size}
-    alt="Loading..."
-  />
+  <Image src={spinner} height={size} width={size} alt="Loading..." />
 );
