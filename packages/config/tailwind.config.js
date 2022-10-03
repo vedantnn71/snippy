@@ -12,6 +12,9 @@ module.exports = {
       },
       boxShadow: {
         primary: '0px 4px 74px 8px rgba(255, 165, 234, 0.05)'
+      },
+      colors: {
+        'slate-border': '#1A1D1E',
       }
   },
   plugins: [

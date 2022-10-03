@@ -1,8 +1,9 @@
+import { Sidebar } from "@/components";
+
 const Lists = () => {
   return (
-    <div>
-      <h1>Lists</h1>
-      <p>Find me in "./web/src/pages/lists/index.tsx"</p>
+    <div className="bg-slate-12 min-h-screen min-w-screen flex flex-row">
+      <Sidebar />
     </div>
   );
 };
