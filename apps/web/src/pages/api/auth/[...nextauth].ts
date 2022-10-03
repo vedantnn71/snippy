@@ -8,6 +8,9 @@ import { PrismaAdapter } from "@next-auth/prisma-adapter";
 
 export const options: NextAuthOptions = {
   adapter: PrismaAdapter(prisma),
+  pages: {
+    signIn: '/signin'
+  },
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_ID as string,
