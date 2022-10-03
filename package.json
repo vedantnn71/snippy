@@ -25,6 +25,7 @@
     "@commitlint/config-conventional": "^17.1.0",
     "husky": "^8.0.1",
     "prettier": "latest",
+    "prettier-plugin-tailwindcss": "^0.1.13",
     "turbo": "latest"
   },
   "engines": {
