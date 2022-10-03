@@ -33,6 +33,7 @@ importers:
       '@types/react': 18.0.21
       '@types/react-dom': 18.0.6
       autoprefixer: ^10.4.8
+      classnames: ^2.3.2
       eslint: 8.22.0
       eslint-config-next: 12.3.1
       next: 12.3.1
@@ -57,6 +58,7 @@ importers:
       '@trpc/next': 10.0.0-proxy-beta.9_2xqczmr2sflgmeoj76ym3pciji
       '@trpc/react': 10.0.0-proxy-beta.9_dese62znvmi4in3c6z5m57mk2q
       '@trpc/server': 10.0.0-proxy-beta.9
+      classnames: 2.3.2
       next: 12.3.1_biqbaboplfbrettd7655fr4n2y
       next-auth: 4.12.2_pvhs6umhoiyo7cgwjp6cvqsra4
       nodemailer: 6.8.0
@@ -94,18 +96,24 @@ importers:
 
   packages/config:
     specifiers:
+      '@radix-ui/colors': ^0.1.8
+      '@snippy/primitives': '*'
       '@tailwindcss/forms': ^0.5.3
       autoprefixer: ^10.4.8
       postcss: ^8.4.16
       tailwindcss: ^3.1.8
       tailwindcss-radix: ^2.6.0
+      windy-radix-palette: ^0.2.0
     dependencies:
+      '@snippy/primitives': link:../primitives
       autoprefixer: 10.4.12_postcss@8.4.16
       postcss: 8.4.16
       tailwindcss-radix: 2.6.0
     devDependencies:
+      '@radix-ui/colors': 0.1.8
       '@tailwindcss/forms': 0.5.3_tailwindcss@3.1.8
       tailwindcss: 3.1.8_postcss@8.4.16
+      windy-radix-palette: 0.2.0_olmzj454ro2bz4cry3loej3hyq
 
   packages/db:
     specifiers:
@@ -595,7 +603,6 @@ packages:
 
   /@radix-ui/colors/0.1.8:
     resolution: {integrity: sha512-jwRMXYwC0hUo0mv6wGpuw254Pd9p/R6Td5xsRpOmaWkUHlooNWqVcadgyzlRumMq3xfOTXwJReU0Jv+EIy4Jbw==}
-    dev: false
 
   /@radix-ui/primitive/1.0.0:
     resolution: {integrity: sha512-3e7rn8FDMin4CgeL7Z/49smCA3rFYY3Ha2rUQ7HRWFadS5iCRw08ZgVT1LaNTCNqgvrUiyczLflrVrF0SRQtNA==}
@@ -3745,6 +3752,16 @@ packages:
     hasBin: true
     dependencies:
       isexe: 2.0.0
+    dev: true
+
+  /windy-radix-palette/0.2.0_olmzj454ro2bz4cry3loej3hyq:
+    resolution: {integrity: sha512-6k6DfNGog0bnGm2A/DU8f9syrL+K0L6Nbwrb/e20bOrZKJ38L1UUWQCJnIICmEX2yS4piqcl03tk6W5dT3ZE2w==}
+    peerDependencies:
+      '@radix-ui/colors': '>=0.1.0'
+      tailwindcss: '>=3.0.0'
+    dependencies:
+      '@radix-ui/colors': 0.1.8
+      tailwindcss: 3.1.8_postcss@8.4.16
     dev: true
 
   /word-wrap/1.2.3:
