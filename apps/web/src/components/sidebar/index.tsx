@@ -2,6 +2,7 @@ import { Icon, Logo } from "@snippy/primitives"
 import { useSession } from "next-auth/react"
 import { ReactNode, useEffect, useState } from "react"
 import { signOut } from "next-auth/react";
+import Link from "next/link";
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
 
 export const Sidebar = () => {
@@ -21,13 +22,17 @@ export const Sidebar = () => {
       </div>
 
       <div className="flex flex-col align-center justify-center gap-4">
-        <SidebarButton>
-          <Icon type="regular" name="list-ul" size={28} color="rgba(255, 255, 255, 0.9)" />
-        </SidebarButton>
+        <Link href="/lists">
+          <SidebarButton>
+            <Icon type="regular" name="list-ul" size={28} color="rgba(255, 255, 255, 0.9)" />
+          </SidebarButton>
+        </Link>
 
-        <SidebarButton>
-          <Icon type="regular" name="folder" size={28} color="rgba(255, 255, 255, 0.9)" />
-        </SidebarButton>
+        <Link href="/collections">
+          <SidebarButton>
+            <Icon type="regular" name="folder" size={28} color="rgba(255, 255, 255, 0.9)" />
+          </SidebarButton>
+        </Link>
       </div>
 
       <div>
