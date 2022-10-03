@@ -39,14 +39,17 @@ model Session {
 }
 
 model User {
-  id            String    @id @default(cuid())
+  id            String       @id @default(cuid())
   name          String?
-  email         String?   @unique
+  email         String?      @unique
   emailVerified DateTime?
   image         String?
   accounts      Account[]
   sessions      Session[]
-  Todo          Todo[]
+  snippets      Snippet[]
+  lists         List[]
+  tags          Tag[]
+  collections   Collection[]
 
   @@map("users")
 }
@@ -60,12 +63,49 @@ model VerificationToken {
   @@map("verification_tokens")
 }
 
-model Todo {
-  id        String  @id @default(cuid())
-  title     String
-  completed Boolean @default(false)
-  userId    String
-  user      User    @relation(fields: [userId], references: [id])
+model Snippet {
+  id          String  @id @default(cuid())
+  isCommand   Boolean
+  code        String  @db.Text
+  name        String
+  description String?
+  userId      String
+  user        User    @relation(fields: [userId], references: [id])
+  list        List?   @relation(fields: [listId], references: [id])
+  listId      String?
+  tags        Tag[]
 
-  @@map("todos")
+  @@map("snippets")
+}
+
+model List {
+  id           String      @id @default(cuid())
+  name         String
+  snippets     Snippet[]
+  userId       String
+  user         User        @relation(fields: [userId], references: [id])
+  Collection   Collection? @relation(fields: [collectionId], references: [id])
+  collectionId String?
+
+  @@map("lists")
+}
+
+model Tag {
+  id       String    @id @default(cuid())
+  name     String
+  snippets Snippet[]
+  userId   String
+  user     User      @relation(fields: [userId], references: [id])
+
+  @@map("tags")
+}
+
+model Collection {
+  id     String @id @default(cuid())
+  name   String
+  lists  List[]
+  userId String
+  user   User   @relation(fields: [userId], references: [id])
+
+  @@map("collections")
 }
