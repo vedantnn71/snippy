@@ -6,7 +6,7 @@ export const ListsHeader = () => {
   const setMode = useListStore((state) => state.setMode);
 
   const toggleMode = () => {
-    setMode(mode === "code" ? "command" : "code");
+    setMode(mode === "snippets" ? "commands" : "snippets");
   }
 
   return (

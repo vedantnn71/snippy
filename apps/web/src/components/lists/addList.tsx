@@ -1,7 +1,7 @@
 import { Transition } from "@headlessui/react";
 import { Cross1Icon } from "@radix-ui/react-icons";
 import { Fragment, useState } from "react";
-import { Button, Icon } from "@snippy/primitives";
+import { Icon } from "@snippy/primitives";
 import { useListStore } from "@/store";
 import { trpc } from "@/utils/trpc";
 import SelectIcon from "./selectIcon";
@@ -81,7 +81,7 @@ export const AddList = () => {
             </h1>
 
             <DialogPrimitive.Description className="mt-2 text-sm font-normal text-slate-4">
-              Create a new list to organize your {mode === "code" ? "snippets" : "commands"}.
+              Create a new list to organize your {mode === "snippets" ? "snippets" : "commands"}.
             </DialogPrimitive.Description>
 
             <div className="mt-2 space-y-2">
@@ -95,7 +95,7 @@ export const AddList = () => {
                 <input
                   id="listName"
                   type="text"
-                  placeholder="Yup schemas"
+                  placeholder={mode === "snippets" ? "typescript snippets" : "tmux commands"}
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   className={cx(

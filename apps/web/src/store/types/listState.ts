@@ -5,4 +5,4 @@ export interface ListState {
   setActiveList: (id: string) => void;
 }
 
-export type Mode = "code" | "command";
+export type Mode = "snippets" | "commands";
