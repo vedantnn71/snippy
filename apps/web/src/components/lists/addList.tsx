@@ -104,7 +104,7 @@ export const AddList = () => {
                     "border focus-visible:border-transparent border-gray-700",
                     "focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75"
                   )}
-                  maxLength={20}
+                  maxLength={16}
                   required
                 />
               </fieldset>
