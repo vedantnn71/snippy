@@ -1,11 +1,11 @@
 import { Sidebar } from "@/components";
+import { Lists } from "@/components";
 
-const Lists = () => {
+export default function() {
   return (
     <div className="bg-slate-12 min-w-screen flex min-h-screen flex-row">
       <Sidebar />
+      <Lists />
     </div>
   );
 };
-
-export default Lists;
