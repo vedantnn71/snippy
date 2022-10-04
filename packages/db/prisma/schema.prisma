@@ -81,13 +81,15 @@ model Snippet {
 }
 
 model List {
-  id           String      @id @default(cuid())
-  name         String
-  snippets     Snippet[]
-  userId       String
-  user         User        @relation(fields: [userId], references: [id])
-  Collection   Collection? @relation(fields: [collectionId], references: [id])
-  collectionId String?
+  id            String      @id @default(cuid())
+  name          String
+  icon          String?
+  isCommandList Boolean     @default(false)
+  snippets      Snippet[]
+  userId        String
+  user          User        @relation(fields: [userId], references: [id])
+  Collection    Collection? @relation(fields: [collectionId], references: [id])
+  collectionId  String?
 
   @@map("lists")
 }
