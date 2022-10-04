@@ -11,7 +11,7 @@ interface Props {
 
 export const Checkbox = ({ className, children }: Props) => {
   return (
-    <form className="flex items-center">
+    <div className="flex items-center">
       <CheckboxPrimitive.Root
         id="c1"
         defaultChecked
@@ -33,6 +33,6 @@ export const Checkbox = ({ className, children }: Props) => {
       >
         {children}
       </LabelPrimitive.Label>
-    </form>
+    </div>
   );
 };
