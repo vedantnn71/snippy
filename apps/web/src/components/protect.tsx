@@ -15,12 +15,12 @@ export const Protect = ({ children }: IProtectProps) => {
   const routeContains = (route: string) => router.pathname.includes(route);
 
   useEffect(() => {
-    if (session.status === "authenticated") return;
+    if (session.status === "authenticated" || session.status === "loading") return;
 
     if (routeContains("/lists") || routeContains("/collections")) {
       router.push("/signin");
     }
   }, [session.status]);
 
-  return <>{children}</>;
+  return children;
 };
