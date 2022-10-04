@@ -9,12 +9,17 @@ import * as DialogPrimitive from "@radix-ui/react-dialog";
 import cx from "classnames";
 
 export const AddList = () => {
-  const mutation = trpc.list.add.useMutation();
   const mode = useListStore((state) => state.mode);
   const [isOpen, setIsOpen] = useState(false);
   const [name, setName] = useState("");
   const [icon, setIcon] = useState("javascript");
   const [error, setError] = useState<string | null>();
+  const utils = trpc.useContext();
+  const mutation = trpc.list.add.useMutation({
+    onSuccess: () => {
+      utils.list.all.invalidate();
+    }
+  });
 
   const addList = async () => {
     if (name === "") {
