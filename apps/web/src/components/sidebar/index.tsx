@@ -17,7 +17,7 @@ export const Sidebar = () => {
   }, [data?.user]);
 
   return (
-    <div className="align-center border-r-slate-border flex h-screen flex-col justify-between border-r-[1px] px-6 py-10">
+    <div className="align-center border-r-slate-11.5 flex h-screen flex-col justify-between border-r-[1px] px-6 py-10">
       <div>
         <Logo size={32} />
       </div>
@@ -55,7 +55,7 @@ export const Sidebar = () => {
             />
           </DropdownMenuPrimitive.Trigger>
 
-          <DropdownMenuPrimitive.Content className="bg-slate-border text-cyan-8 m-2 rounded-xl px-8 py-3">
+          <DropdownMenuPrimitive.Content className="bg-slate-11.5 text-cyan-8 m-2 rounded-xl px-8 py-3">
             <DropdownMenuPrimitive.Item
               onClick={() => signOut()}
               className="align-center flex w-full cursor-pointer gap-2 outline-none"
