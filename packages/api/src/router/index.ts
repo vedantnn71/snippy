@@ -1,8 +1,8 @@
 import { t } from "../trpc";
-import { todoRouter } from "./todo";
+import { listRouter } from "./list";
 
 export const appRouter = t.router({
-  todo: todoRouter,
+  list: listRouter,
 });
 
 export type AppRouter = typeof appRouter;
