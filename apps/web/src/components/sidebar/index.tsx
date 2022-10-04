@@ -1,6 +1,7 @@
 import { Icon, Logo } from "@snippy/primitives";
+import { SidebarButton } from "./button";
 import { useSession } from "next-auth/react";
-import { ReactNode, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
@@ -73,12 +74,3 @@ export const Sidebar = () => {
     </div>
   );
 };
-
-interface ISidebarButtonProps {
-  children: ReactNode;
-}
-const SidebarButton = ({ children }: ISidebarButtonProps) => (
-  <button className="outline-none transition-all duration-300 active:scale-95">
-    {children}
-  </button>
-);
