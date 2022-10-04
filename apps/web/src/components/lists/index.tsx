@@ -6,13 +6,22 @@ import { ListsHeader } from "./header";
 export const Lists = () => {
   const lists = trpc.list.all.useQuery();
   const setActiveList = useListStore((state) => state.setActiveList);
+  const mode = useListStore((state) => state.mode);
+
+  const listsToShow = lists.data?.filter((list) => {
+    if (mode === "commands") {
+      return list.isCommandList;
+    }
+
+    return !list.isCommandList;
+  });
 
   return (
     <div className="align-center border-r-slate-11.5 flex h-screen flex-col border-r-[1px]">
       <ListsHeader />
 
       <div className="overflow-y-scroll hide-scrollbar">
-        {lists.data?.map((list) => (
+        {listsToShow?.map((list) => (
           <div
             key={list.id}
             className="flex items-center justify-between p-6 cursor-pointer active:scale-95 transition-all duration-300"
