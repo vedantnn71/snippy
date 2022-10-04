@@ -15,7 +15,7 @@ export const listRouter = t.router({
     z
       .object({
         name: z.string(),
-        mode: z.enum(["code", "command"]).optional().default("code"),
+        mode: z.enum(["snippets", "commands"]).optional().default("snippets"),
         icon: z.string().optional()
       })
   ).mutation(async ({ ctx, input }) => {
@@ -30,7 +30,7 @@ export const listRouter = t.router({
       return new Error("Icon is required");
     }
 
-    const isCommandList = mode === "command";
+    const isCommandList = mode === "commands";
 
     return ctx.prisma.list.create({
       data: {
