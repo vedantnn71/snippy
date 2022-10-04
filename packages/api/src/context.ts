@@ -3,6 +3,9 @@ import * as trpc from "@trpc/server";
 import * as trpcNext from "@trpc/server/adapters/next";
 import { prisma } from "@snippy/db";
 
+import { unstable_getServerSession } from "next-auth";
+import { options as authOptions } from "../../../apps/web/src/pages/api/auth/[...nextauth]";
+
 /**
  * Replace this with an object if you want to pass things to createContextInner
  */
@@ -25,7 +28,13 @@ export const createContextInner = async (opts: CreateContextOptions) => {
 export const createContext = async (
   opts: trpcNext.CreateNextContextOptions
 ) => {
-  return await createContextInner({});
+  const { req, res } = opts;
+  const session = await unstable_getServerSession(req, res, authOptions);
+
+  return {
+    session,
+    prisma,
+  }
 };
 
 export type Context = trpc.inferAsyncReturnType<typeof createContext>;
