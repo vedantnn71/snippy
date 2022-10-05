@@ -4,7 +4,7 @@ import { Fragment, useState } from "react";
 import { Icon } from "@snippy/primitives";
 import { useListStore } from "@/store";
 import { trpc } from "@/utils/trpc";
-import SelectIcon from "@/components/selectIcon";
+import { SelectIcon } from "@/components";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import cx from "classnames";
 

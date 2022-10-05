@@ -4,7 +4,7 @@ import { Fragment, useState } from "react";
 import { Icon } from "@snippy/primitives";
 import { useListStore } from "@/store";
 import { trpc } from "@/utils/trpc";
-import SelectIcon from "@/components/selectIcon";
+import { SelectIcon } from "@/components";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import cx from "classnames";
 
@@ -13,6 +13,7 @@ export const AddSnippet = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [name, setName] = useState("");
   const [icon, setIcon] = useState("javascript");
+  const [language, setLanguage] = useState("plaintext");
   const [error, setError] = useState<string | null>();
   const utils = trpc.useContext();
   const listId = useListStore((state) => state.activeList);
@@ -43,11 +44,13 @@ export const AddSnippet = () => {
       icon,
       code: "",
       listId,
+      language,
     });
 
     setName("");
     setError("");
     setIcon("javascript");
+    setLanguage("plaintext");
     setIsOpen(false);
   };
 
