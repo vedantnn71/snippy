@@ -37,7 +37,7 @@ export const Lists = () => {
   }, []);
 
   return (
-    <div className="align-center border-r-slate-11.5 flex h-screen flex-col border-r-[1px]">
+    <div className="align-center border-r-slate-11.5 flex h-screen flex-col border-r-[1px] min-w-fit">
       <ListsHeader />
 
       <div className="overflow-y-scroll hide-scrollbar">

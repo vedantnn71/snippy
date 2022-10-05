@@ -2,10 +2,11 @@ import type { AppProps } from "next/app";
 import { SessionProvider } from "next-auth/react";
 import { Session } from "next-auth";
 import { trpc } from "@/utils/trpc";
+import { Protect } from "@/components";
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import Head from "next/head";
 import "@/styles/fonts.css";
 import "@/styles/globals.css";
-import { Protect } from "@/components";
 
 const App = ({
   Component,
@@ -21,6 +22,8 @@ const App = ({
         <Protect>
           <Component {...pageProps} />
         </Protect>
+
+        <ReactQueryDevtools initialIsOpen={false} />
       </SessionProvider>
     </>
   );
