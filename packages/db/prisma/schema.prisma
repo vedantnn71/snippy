@@ -68,6 +68,7 @@ model VerificationToken {
 model Snippet {
   id          String  @id @default(cuid())
   isCommand   Boolean
+  icon        String?
   code        String  @db.Text
   name        String
   description String?
