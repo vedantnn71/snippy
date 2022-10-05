@@ -1,5 +1,6 @@
 import { useSnippetStore, useListStore } from "@/store"
 import { trpc } from "@/utils/trpc";
+import { useEffect } from "react";
 import { AddSnippet } from "./addSnippet";
 import { Icon, AlertDialog } from "@snippy/primitives";
 import cx from "classnames";
@@ -8,7 +9,8 @@ export const Snippets = () => {
   const activeList = useListStore((state) => state.activeList);
   const activeSnippet = useSnippetStore((state) => state.activeSnippet);
   const setActiveSnippet = useSnippetStore((state) => state.setActiveSnippet);
-  const snippets = trpc.snippet.all.useQuery(activeList!);
+  const snippetsQuery = trpc.snippet.all.useQuery(activeList!);
+  const snippets = snippetsQuery.data ?? [];
   const utils = trpc.useContext();
   const deleteMutation = trpc.snippet.delete.useMutation({
     onSuccess: () => {
@@ -21,14 +23,18 @@ export const Snippets = () => {
     return;
   };
 
-  if (activeList === null) {
-    return <div>Select a list</div>;
+  useEffect(() => {
+    utils.snippet.all.invalidate();
+  }, [activeSnippet]);
+
+  if (activeList === null || snippetsQuery.isLoading) {
+    return <div></div>;
   }
 
   return (
-    <div className="align-center border-r-slate-11.5 flex h-screen flex-col border-r-[1px]">
+    <div className="align-center border-r-slate-11.5 flex h-screen flex-col border-r-[1px] min-w-fit">
       <div className="flex flex-col overflow-y-scroll hide-scrollbar gap-1">
-        {snippets.data?.map((snippet) => (
+        {snippets.sort().map((snippet) => (
           <div
             key={snippet.id}
             className={cx(
