@@ -20,10 +20,11 @@ export const snippetRouter = t.router({
         description: z.string().optional(),
         code: z.string(),
         listId: z.string(),
+        language: z.string(),
       })
     )
     .mutation(async ({ ctx, input }) => {
-      const { name, icon, mode, description, code, listId } = input;
+      const { name, icon, mode, description, code, listId, language } = input;
       const userId = (await getUserId(ctx)) as string;
       const isCommand = mode === "command";
 
@@ -36,6 +37,7 @@ export const snippetRouter = t.router({
           isCommand,
           listId,
           userId,
+          language,
         },
       });
     }),
@@ -50,10 +52,11 @@ export const snippetRouter = t.router({
         description: z.string().optional(),
         code: z.string().optional(),
         listId: z.string().optional(),
+        language: z.string().optional(),
       })
     )
     .mutation(async ({ ctx, input }) => {
-      const { id, name, icon, mode, description, code, listId } = input;
+      const { id, name, icon, mode, description, code, listId, language } = input;
       const userId = (await getUserId(ctx)) as string;
       const isCommand = mode === "command";
 
@@ -67,6 +70,7 @@ export const snippetRouter = t.router({
           isCommand,
           listId,
           userId,
+          language,
         },
       });
     }),
