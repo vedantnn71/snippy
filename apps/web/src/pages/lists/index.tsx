@@ -1,4 +1,4 @@
-import { Sidebar } from "@/components";
+import { Sidebar, Snippets } from "@/components";
 import { Lists } from "@/components";
 
 export default function() {
@@ -6,6 +6,8 @@ export default function() {
     <div className="bg-slate-12 min-w-screen flex min-h-screen flex-row">
       <Sidebar />
       <Lists />
+      <Snippets />
     </div>
   );
 };
+
