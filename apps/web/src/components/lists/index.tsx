@@ -1,7 +1,9 @@
 import { useListStore } from "@/store";
 import { trpc } from "@/utils/trpc";
+import { useEffect } from "react";
 import { Icon, AlertDialog } from "@snippy/primitives";
 import { ListsHeader } from "./header";
+import cx from "classnames";
 
 export const Lists = () => {
   const lists = trpc.list.all.useQuery();
@@ -11,6 +13,7 @@ export const Lists = () => {
       utils.list.all.invalidate();
     }
   });
+  const activeList = useListStore((state) => state.activeList);
   const setActiveList = useListStore((state) => state.setActiveList);
   const mode = useListStore((state) => state.mode);
 
@@ -27,6 +30,12 @@ export const Lists = () => {
     return;
   };
 
+  useEffect(() => {
+    if (listsToShow?.length) {
+      setActiveList(listsToShow[0]?.id as string);
+    }
+  }, []);
+
   return (
     <div className="align-center border-r-slate-11.5 flex h-screen flex-col border-r-[1px]">
       <ListsHeader />
@@ -35,7 +44,10 @@ export const Lists = () => {
         {listsToShow?.map((list) => (
           <div
             key={list.id}
-            className="group flex items-center justify-between p-6 cursor-pointer"
+            className={cx(
+"group flex items-center justify-between py-4 px-6 cursor-pointer",
+              list.id === activeList ? "bg-slate-11.5" : ""
+            )}
             onClick={() => setActiveList(list.id)}
           >
             <div className="flex items-center gap-2">
