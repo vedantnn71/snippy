@@ -28,14 +28,16 @@ export const Code = () => {
   }
 
   return (
-    <div className="flex flex-col gap-4 items-start justify-start my-4 px-6">
+    <div className="my-4 flex flex-col items-start justify-start gap-4 px-6">
       {isReadOnly ? (
-        <h1 className="text-md font-semibold text-slate-8">{snippetQuery.data?.language}</h1>
+        <h1 className="text-md text-slate-8 font-semibold">
+          {snippetQuery.data?.language}
+        </h1>
       ) : (
         <SelectLanguage value={language} setValue={updateLanguage} />
       )}
 
-      <div className="rounded-xl overflow-hidden w-full z-[1]">
+      <div className="z-[1] w-full overflow-hidden rounded-xl">
         <MonacoEditor defaultValue={snippetCode!} language={language} />
       </div>
     </div>

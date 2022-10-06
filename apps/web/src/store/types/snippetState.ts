@@ -4,4 +4,3 @@ export interface SnippetState {
   setActiveSnippet: (id: string | null) => void;
   setIsReadOnly: (isReadOnly: boolean) => void;
 }
-

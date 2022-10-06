@@ -18,7 +18,7 @@ export const AddList = () => {
   const mutation = trpc.list.add.useMutation({
     onSuccess: () => {
       utils.list.all.invalidate();
-    }
+    },
   });
 
   const addList = async () => {
@@ -38,13 +38,18 @@ export const AddList = () => {
     setError("");
     setIcon("javascript");
     setIsOpen(false);
-  }
+  };
 
   return (
     <DialogPrimitive.Root open={isOpen} onOpenChange={setIsOpen}>
       <DialogPrimitive.Trigger asChild>
-        <button className="hover:opacity-80 grid items-center ml-4 outline-none">
-          <Icon type="regular" name="plus" size={24} color="rgba(255,255,255,0.8)" />
+        <button className="ml-4 grid items-center outline-none hover:opacity-80">
+          <Icon
+            type="regular"
+            name="plus"
+            size={24}
+            color="rgba(255,255,255,0.8)"
+          />
         </button>
       </DialogPrimitive.Trigger>
       <Transition.Root show={isOpen}>
@@ -81,12 +86,11 @@ export const AddList = () => {
               "focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75"
             )}
           >
-            <h1 className="text-sm font-medium text-gray-100">
-              Add List
-            </h1>
+            <h1 className="text-sm font-medium text-gray-100">Add List</h1>
 
-            <DialogPrimitive.Description className="mt-2 text-sm font-normal text-slate-4">
-              Create a new list to organize your {mode === "snippets" ? "snippets" : "commands"}.
+            <DialogPrimitive.Description className="text-slate-4 mt-2 text-sm font-normal">
+              Create a new list to organize your{" "}
+              {mode === "snippets" ? "snippets" : "commands"}.
             </DialogPrimitive.Description>
 
             <div className="mt-2 space-y-2">
@@ -100,13 +104,17 @@ export const AddList = () => {
                 <input
                   id="listName"
                   type="text"
-                  placeholder={mode === "snippets" ? "typescript snippets" : "tmux commands"}
+                  placeholder={
+                    mode === "snippets"
+                      ? "typescript snippets"
+                      : "tmux commands"
+                  }
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   className={cx(
-                    "mt-1 block w-full rounded-md bg-slate-11.5",
-                    "text-sm text-gray-4 placeholder:text-gray-600",
-                    "border focus-visible:border-transparent border-gray-700",
+                    "bg-slate-11.5 mt-1 block w-full rounded-md",
+                    "text-gray-4 text-sm placeholder:text-gray-600",
+                    "border border-gray-700 focus-visible:border-transparent",
                     "focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75"
                   )}
                   maxLength={16}
@@ -124,7 +132,7 @@ export const AddList = () => {
               </fieldset>
 
               {error && (
-                <div className="flex flex-col text-sm font-normal text-red-9 gap-1">
+                <div className="text-red-9 flex flex-col gap-1 text-sm font-normal">
                   <h3 className="font-semibold">Error</h3>
                   <span>{error}</span>
                 </div>
@@ -134,9 +142,9 @@ export const AddList = () => {
                 <button
                   className={cx(
                     "inline-flex select-none justify-center rounded-md px-6 py-2 text-sm font-medium",
-                    "bg-pink-9 text-white hover:bg-pink-10",
+                    "bg-pink-9 hover:bg-pink-10 text-white",
                     "border-none outline-none",
-                    mutation.isLoading ? "opacity-70 cursor-not-allowed" : ""
+                    mutation.isLoading ? "cursor-not-allowed opacity-70" : ""
                   )}
                   onClick={addList}
                   type="submit"
@@ -144,7 +152,6 @@ export const AddList = () => {
                   Add
                 </button>
               </div>
-
             </div>
 
             <DialogPrimitive.Close

@@ -7,15 +7,18 @@ export const ListsHeader = () => {
 
   const toggleMode = () => {
     setMode(mode === "snippets" ? "commands" : "snippets");
-  }
+  };
 
   return (
-    <div className="flex justify-between align-center py-4 px-6 text-slate-2 border-b border-b-slate-11.5">
-      <h1 className="text-xl font-semibold cursor-pointer hover:opacity-80" onClick={toggleMode}>
+    <div className="align-center text-slate-2 border-b-slate-11.5 flex justify-between border-b py-4 px-6">
+      <h1
+        className="cursor-pointer text-xl font-semibold hover:opacity-80"
+        onClick={toggleMode}
+      >
         {mode === "snippets" ? "Snippets" : "Commands"}
       </h1>
 
       <AddList />
     </div>
   );
-}
+};

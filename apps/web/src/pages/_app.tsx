@@ -3,7 +3,7 @@ import { SessionProvider } from "next-auth/react";
 import { Session } from "next-auth";
 import { trpc } from "@/utils/trpc";
 import { Protect } from "@/components";
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import Head from "next/head";
 import "@/styles/fonts.css";
 import "@/styles/globals.css";

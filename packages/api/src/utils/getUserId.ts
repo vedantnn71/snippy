@@ -1,4 +1,4 @@
-import { Context } from "../context"
+import { Context } from "../context";
 
 export const getUserId = async (ctx: Context) => {
   const { prisma } = ctx;
@@ -12,4 +12,4 @@ export const getUserId = async (ctx: Context) => {
   const user = await prisma.user.findUnique({ where: { email } });
 
   return user?.id;
-}
+};

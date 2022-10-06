@@ -1,4 +1,4 @@
-import { useSnippetStore, useListStore } from "@/store"
+import { useSnippetStore, useListStore } from "@/store";
 import { trpc } from "@/utils/trpc";
 import { useEffect } from "react";
 import { AddSnippet } from "./addSnippet";
@@ -15,7 +15,7 @@ export const Snippets = () => {
   const deleteMutation = trpc.snippet.delete.useMutation({
     onSuccess: () => {
       utils.snippet.all.invalidate();
-    }
+    },
   });
 
   const deleteSnippet = async (id: string) => {
@@ -32,20 +32,22 @@ export const Snippets = () => {
   }
 
   return (
-    <div className="align-center border-r-slate-11.5 flex h-screen flex-col border-r-[1px] min-w-fit">
-      <div className="flex flex-col overflow-y-scroll hide-scrollbar gap-1">
+    <div className="align-center border-r-slate-11.5 flex h-screen min-w-fit flex-col border-r-[1px]">
+      <div className="hide-scrollbar flex flex-col gap-1 overflow-y-scroll">
         {snippets.sort().map((snippet) => (
           <div
             key={snippet.id}
             className={cx(
-              "group flex items-center justify-between py-4 px-6 cursor-pointer",
+              "group flex cursor-pointer items-center justify-between py-4 px-6",
               activeSnippet === snippet.id ? "bg-slate-11.5" : ""
             )}
             onClick={() => setActiveSnippet(snippet.id)}
           >
             <div className="flex items-center gap-2">
               <Icon type="logos" name={snippet.icon!} size={20} color="#fff" />
-              <h1 className="text-md font-medium text-slate-6">{snippet.name}</h1>
+              <h1 className="text-md text-slate-6 font-medium">
+                {snippet.name}
+              </h1>
             </div>
 
             <AlertDialog
@@ -54,7 +56,7 @@ export const Snippets = () => {
               confirmLabel="Delete"
               onConfirm={() => deleteSnippet(snippet.id)}
               trigger={
-                <span className="opacity-0 group-hover:opacity-100 group-rdx-state-open:opacity-0 group-active:opacity-0 transition-all duration-500">
+                <span className="group-rdx-state-open:opacity-0 opacity-0 transition-all duration-500 group-hover:opacity-100 group-active:opacity-0">
                   <Icon
                     type="regular"
                     name="trash"
@@ -71,4 +73,4 @@ export const Snippets = () => {
       </div>
     </div>
   );
-}
+};

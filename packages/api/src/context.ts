@@ -34,7 +34,7 @@ export const createContext = async (
   return {
     session,
     prisma,
-  }
+  };
 };
 
 export type Context = trpc.inferAsyncReturnType<typeof createContext>;

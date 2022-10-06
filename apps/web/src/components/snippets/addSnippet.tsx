@@ -57,10 +57,10 @@ export const AddSnippet = () => {
   return (
     <DialogPrimitive.Root open={isOpen} onOpenChange={setIsOpen}>
       <DialogPrimitive.Trigger asChild>
-        <div className="group flex items-center justify-between p-6 cursor-pointer">
+        <div className="group flex cursor-pointer items-center justify-between p-6">
           <div className="flex items-center gap-2">
             <Icon type="regular" name="plus" size={20} color="var(--slate11)" />
-            <h1 className="text-md font-medium text-slate-11">
+            <h1 className="text-md text-slate-11 font-medium">
               Add a new snippet
             </h1>
           </div>
@@ -102,7 +102,7 @@ export const AddSnippet = () => {
           >
             <h1 className="text-sm font-medium text-gray-100">Add Snippet</h1>
 
-            <DialogPrimitive.Description className="mt-2 text-sm font-normal text-slate-4">
+            <DialogPrimitive.Description className="text-slate-4 mt-2 text-sm font-normal">
               Create a new snippet in the current list
             </DialogPrimitive.Description>
 
@@ -123,9 +123,9 @@ export const AddSnippet = () => {
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   className={cx(
-                    "mt-1 block w-full rounded-md bg-slate-11.5",
-                    "text-sm text-gray-4 placeholder:text-gray-600",
-                    "border focus-visible:border-transparent border-gray-700",
+                    "bg-slate-11.5 mt-1 block w-full rounded-md",
+                    "text-gray-4 text-sm placeholder:text-gray-600",
+                    "border border-gray-700 focus-visible:border-transparent",
                     "focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75"
                   )}
                   maxLength={16}
@@ -143,7 +143,7 @@ export const AddSnippet = () => {
               </fieldset>
 
               {error && (
-                <div className="flex flex-col text-sm font-normal text-red-9 gap-1">
+                <div className="text-red-9 flex flex-col gap-1 text-sm font-normal">
                   <h3 className="font-semibold">Error</h3>
                   <span>{error}</span>
                 </div>
@@ -153,9 +153,9 @@ export const AddSnippet = () => {
                 <button
                   className={cx(
                     "inline-flex select-none justify-center rounded-md px-6 py-2 text-sm font-medium",
-                    "bg-pink-9 text-white hover:bg-pink-10",
+                    "bg-pink-9 hover:bg-pink-10 text-white",
                     "border-none outline-none",
-                    mutation.isLoading ? "opacity-70 cursor-not-allowed" : ""
+                    mutation.isLoading ? "cursor-not-allowed opacity-70" : ""
                   )}
                   onClick={addList}
                   type="submit"

@@ -11,7 +11,7 @@ export const Lists = () => {
   const deleteMutation = trpc.list.delete.useMutation({
     onSuccess: () => {
       utils.list.all.invalidate();
-    }
+    },
   });
   const activeList = useListStore((state) => state.activeList);
   const setActiveList = useListStore((state) => state.setActiveList);
@@ -37,22 +37,22 @@ export const Lists = () => {
   }, []);
 
   return (
-    <div className="align-center border-r-slate-11.5 flex h-screen flex-col border-r-[1px] min-w-fit">
+    <div className="align-center border-r-slate-11.5 flex h-screen min-w-fit flex-col border-r-[1px]">
       <ListsHeader />
 
-      <div className="overflow-y-scroll hide-scrollbar">
+      <div className="hide-scrollbar overflow-y-scroll">
         {listsToShow?.map((list) => (
           <div
             key={list.id}
             className={cx(
-"group flex items-center justify-between py-4 px-6 cursor-pointer",
+              "group flex cursor-pointer items-center justify-between py-4 px-6",
               list.id === activeList ? "bg-slate-11.5" : ""
             )}
             onClick={() => setActiveList(list.id)}
           >
             <div className="flex items-center gap-2">
               <Icon type="logos" name={list.icon!} size={20} color="#fff" />
-              <h1 className="text-md font-medium text-slate-6">{list.name}</h1>
+              <h1 className="text-md text-slate-6 font-medium">{list.name}</h1>
             </div>
 
             <AlertDialog
@@ -61,7 +61,7 @@ export const Lists = () => {
               confirmLabel="Delete"
               onConfirm={() => deleteList(list.id)}
               trigger={
-                <span className="opacity-0 group-hover:opacity-100 group-rdx-state-open:opacity-0 group-active:opacity-0 transition-all duration-500">
+                <span className="group-rdx-state-open:opacity-0 opacity-0 transition-all duration-500 group-hover:opacity-100 group-active:opacity-0">
                   <Icon
                     type="regular"
                     name="trash"

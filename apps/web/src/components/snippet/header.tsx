@@ -30,7 +30,7 @@ export const SnippetHeader = () => {
 
   const deleteSnippet = () => {
     deleteMutation.mutateAsync(id!);
-  }
+  };
 
   const updateIcon = (val: string) => {
     updateMutation.mutateAsync({
@@ -42,7 +42,7 @@ export const SnippetHeader = () => {
   const copySnippetLink = () => {
     const link = window.location.origin + "/snippet/" + id;
     navigator.clipboard.writeText(link);
-  }
+  };
 
   useEffect(() => {
     if (snippetQuery.isLoading) {
@@ -53,12 +53,12 @@ export const SnippetHeader = () => {
   }, [snippet?.icon]);
 
   return (
-    <div className="flex flex-col border-b border-slate-11.5 py-4 px-6">
+    <div className="border-slate-11.5 flex flex-col border-b py-4 px-6">
       <div className="flex flex-row items-center">
         {isReadOnly ? (
           <div className="flex flex-row items-center gap-2">
             <Icon type="logos" name={icon!} size={24} />
-            <h1 className="text-xl font-bold text-slate-6">{snippet?.name}</h1>
+            <h1 className="text-slate-6 text-xl font-bold">{snippet?.name}</h1>
           </div>
         ) : (
           <>
@@ -70,7 +70,7 @@ export const SnippetHeader = () => {
             />
 
             <input
-              className="text-xl font-bold ml-2 bg-slate-12 outline-none"
+              className="bg-slate-12 ml-2 text-xl font-bold outline-none"
               defaultValue={snippet?.name}
               onBlur={(evt) => {
                 updateMutation.mutate({
@@ -83,7 +83,7 @@ export const SnippetHeader = () => {
         )}
 
         {!isReadOnly && (
-          <div className="flex items-center ml-auto gap-4">
+          <div className="ml-auto flex items-center gap-4">
             <div
               className="hover:text-green-8 cursor-pointer"
               onClick={() => {
@@ -94,11 +94,7 @@ export const SnippetHeader = () => {
                 }, 1500);
               }}
             >
-              <Icon
-                type="regular"
-                name={shareIcon}
-                size={20} 
-              />
+              <Icon type="regular" name={shareIcon} size={20} />
             </div>
             <AlertDialog
               title={`Delete ${snippet?.name}?`}
@@ -112,7 +108,7 @@ export const SnippetHeader = () => {
               }
             />
           </div>
-      )}
+        )}
       </div>
     </div>
   );

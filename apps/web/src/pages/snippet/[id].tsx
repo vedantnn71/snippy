@@ -4,10 +4,10 @@ import { trpc } from "@/utils/trpc";
 import { useSnippetStore } from "@/store";
 import { Snippet } from "@/components";
 
-export default function() {
+export default function () {
   const router = useRouter();
   const { id } = router.query;
-  const snippetQuery = trpc.snippet.byId.useQuery(id as string || "");
+  const snippetQuery = trpc.snippet.byId.useQuery((id as string) || "");
   const setIsReadOnly = useSnippetStore((state) => state.setIsReadOnly);
   const setActiveSnippet = useSnippetStore((state) => state.setActiveSnippet);
   const activeSnippet = useSnippetStore((state) => state.activeSnippet);
@@ -15,7 +15,7 @@ export default function() {
   useEffect(() => {
     setActiveSnippet(id as string);
     setIsReadOnly(true);
-  }, [id])
+  }, [id]);
 
   if (snippetQuery.isLoading) {
     return "loading...";
@@ -25,8 +25,5 @@ export default function() {
     return "this does not exists, whopsis";
   }
 
-  return (
-    <Snippet />
-  )
-
+  return <Snippet />;
 }

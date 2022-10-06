@@ -4,7 +4,9 @@ import { getUserId } from "../utils";
 
 export const snippetRouter = t.router({
   all: t.procedure.input(z.string()).query(async ({ ctx, input }) => {
-    const snippet = await ctx.prisma.snippet.findMany({ where: { listId: input } });
+    const snippet = await ctx.prisma.snippet.findMany({
+      where: { listId: input },
+    });
 
     if (!snippet) {
       return null;
@@ -54,7 +56,11 @@ export const snippetRouter = t.router({
         id: z.string(),
         name: z.string().optional(),
         icon: z.string().optional(),
-        mode: z.enum(["snippet", "command"]).optional().default("snippet").optional(),
+        mode: z
+          .enum(["snippet", "command"])
+          .optional()
+          .default("snippet")
+          .optional(),
         description: z.string().optional(),
         code: z.string().optional(),
         listId: z.string().optional(),
@@ -62,7 +68,8 @@ export const snippetRouter = t.router({
       })
     )
     .mutation(async ({ ctx, input }) => {
-      const { id, name, icon, mode, description, code, listId, language } = input;
+      const { id, name, icon, mode, description, code, listId, language } =
+        input;
       const userId = (await getUserId(ctx)) as string;
       const isCommand = mode === "command";
 
@@ -85,5 +92,4 @@ export const snippetRouter = t.router({
     const userId = (await getUserId(ctx)) as string;
     return ctx.prisma.snippet.delete({ where: { id: input } });
   }),
-
 });

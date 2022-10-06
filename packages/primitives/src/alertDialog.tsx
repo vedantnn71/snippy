@@ -69,7 +69,7 @@ export const AlertDialog = ({
               <AlertDialogPrimitive.Cancel
                 className={cx(
                   "inline-flex select-none justify-center rounded-md px-4 py-2 text-sm font-medium",
-                  "bg-slate-11.5 text-gray-100 hover:bg-slate-12",
+                  "bg-slate-11.5 hover:bg-slate-12 text-gray-100",
                   "border-none"
                 )}
                 onClick={() => {
@@ -82,7 +82,7 @@ export const AlertDialog = ({
               <AlertDialogPrimitive.Action
                 className={cx(
                   "inline-flex select-none justify-center rounded-md px-4 py-2 text-sm font-medium",
-                  "bg-red-9 text-gray-100 bg-red-10",
+                  "bg-red-9 bg-red-10 text-gray-100",
                   "border-none"
                 )}
                 onClick={() => onConfirm?.()}

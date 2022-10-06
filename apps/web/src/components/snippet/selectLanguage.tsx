@@ -11,7 +11,7 @@ type ISelectLanguageProps = {
 const SelectLanguage = ({ value, setValue }: ISelectLanguageProps) => (
   <SelectPrimitive.Root defaultValue={value} onValueChange={setValue}>
     <SelectPrimitive.Trigger asChild aria-label="Icons">
-      <button className="outline-none flex items-center justify-center mt-1">
+      <button className="mt-1 flex items-center justify-center outline-none">
         <SelectPrimitive.Value />
         <SelectPrimitive.Icon className="ml-2">
           <ChevronDownIcon />
@@ -22,25 +22,21 @@ const SelectLanguage = ({ value, setValue }: ISelectLanguageProps) => (
       <SelectPrimitive.ScrollUpButton className="flex items-center justify-center text-gray-300">
         <ChevronUpIcon />
       </SelectPrimitive.ScrollUpButton>
-      <SelectPrimitive.Viewport className="bg-slate-11.5 p-2 rounded-lg shadow-lg z-[99]">
+      <SelectPrimitive.Viewport className="bg-slate-11.5 z-[99] rounded-lg p-2 shadow-lg">
         <SelectPrimitive.Group>
-          {languages.map(
-            (language) => (
-              <SelectPrimitive.Item
-                key={language}
-                value={language}
-                className={cx(
-                  "relative flex items-center px-8 py-2 rounded-md text-sm text-gray-300 font-medium gap-2",
-                  "radix-disabled:opacity-50",
-                  "focus:outline-none select-none"
-                )}
-              >
-                <SelectPrimitive.ItemText>
-                  {language}
-                </SelectPrimitive.ItemText>
-              </SelectPrimitive.Item>
-            )
-          )}
+          {languages.map((language) => (
+            <SelectPrimitive.Item
+              key={language}
+              value={language}
+              className={cx(
+                "relative flex items-center gap-2 rounded-md px-8 py-2 text-sm font-medium text-gray-300",
+                "radix-disabled:opacity-50",
+                "select-none focus:outline-none"
+              )}
+            >
+              <SelectPrimitive.ItemText>{language}</SelectPrimitive.ItemText>
+            </SelectPrimitive.Item>
+          ))}
         </SelectPrimitive.Group>
       </SelectPrimitive.Viewport>
       <SelectPrimitive.ScrollDownButton className="flex items-center justify-center text-gray-700 dark:text-gray-300">
@@ -86,7 +82,7 @@ const languages = [
   "powershell",
   "shell",
   "makefile",
-  "diff",   
+  "diff",
   "ini",
   "toml",
   "xml",
@@ -114,4 +110,4 @@ const languages = [
   "bicep",
   "coffeescript",
   "fsharp",
-]
+];

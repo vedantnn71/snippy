@@ -11,62 +11,64 @@ export const listRouter = t.router({
     return ctx.prisma.list.findUnique({ where: { id: input } });
   }),
 
-  add: t.procedure.input(
-    z
-      .object({
+  add: t.procedure
+    .input(
+      z.object({
         name: z.string(),
         mode: z.enum(["snippets", "commands"]).optional().default("snippets"),
-        icon: z.string().optional()
+        icon: z.string().optional(),
       })
-  ).mutation(async ({ ctx, input }) => {
-    const { name, icon, mode } = input;
-    const userId = await getUserId(ctx) as string;
+    )
+    .mutation(async ({ ctx, input }) => {
+      const { name, icon, mode } = input;
+      const userId = (await getUserId(ctx)) as string;
 
-    if (name === "") {
-      return new Error("Name is required");
-    }
-
-    if (icon === "") {
-      return new Error("Icon is required");
-    }
-
-    const isCommandList = mode === "commands";
-
-    return ctx.prisma.list.create({
-      data: {
-        name,
-        icon,
-        userId,
-        isCommandList
+      if (name === "") {
+        return new Error("Name is required");
       }
-    });
-  }),
 
-  update: t.procedure.input(
-    z
-      .object({
+      if (icon === "") {
+        return new Error("Icon is required");
+      }
+
+      const isCommandList = mode === "commands";
+
+      return ctx.prisma.list.create({
+        data: {
+          name,
+          icon,
+          userId,
+          isCommandList,
+        },
+      });
+    }),
+
+  update: t.procedure
+    .input(
+      z.object({
         id: z.string(),
         name: z.string(),
-        icon: z.string().optional()
+        icon: z.string().optional(),
       })
-  ).mutation(async ({ ctx, input }) => {
-    const { id, name, icon } = input;
-    const userId = await getUserId(ctx) as string;
+    )
+    .mutation(async ({ ctx, input }) => {
+      const { id, name, icon } = input;
+      const userId = (await getUserId(ctx)) as string;
 
-    return ctx.prisma.list.update({
-      where: { id },
-      data: {
-        name,
-        icon
-      }
-    });
-  }),
+      return ctx.prisma.list.update({
+        where: { id },
+        data: {
+          name,
+          icon,
+        },
+      });
+    }),
 
   delete: t.procedure.input(z.string()).mutation(async ({ ctx, input }) => {
-    const userId = await getUserId(ctx) as string;
+    const userId = (await getUserId(ctx)) as string;
 
     return ctx.prisma.list.delete({
-      where: { id: input }
+      where: { id: input },
     });
   }),
 });

@@ -24,7 +24,7 @@ export const SelectIcon = ({
     }}
   >
     <SelectPrimitive.Trigger asChild aria-label="Icons">
-      <button className="outline-none flex items-center justify-center mt-1">
+      <button className="mt-1 flex items-center justify-center outline-none">
         {showIconOnly && <Icon type="logos" name={value} size={24} />}
 
         {!showIconOnly && (
@@ -39,16 +39,16 @@ export const SelectIcon = ({
       <SelectPrimitive.ScrollUpButton className="flex items-center justify-center text-gray-300">
         <ChevronUpIcon />
       </SelectPrimitive.ScrollUpButton>
-      <SelectPrimitive.Viewport className="bg-slate-11.5 p-2 rounded-lg shadow-lg">
+      <SelectPrimitive.Viewport className="bg-slate-11.5 rounded-lg p-2 shadow-lg">
         <SelectPrimitive.Group>
           {icons.map(({ name, icon }) => (
             <SelectPrimitive.Item
               key={name}
               value={name}
               className={cx(
-                "relative flex items-center px-8 py-2 rounded-md text-sm text-gray-300 font-medium gap-2",
+                "relative flex items-center gap-2 rounded-md px-8 py-2 text-sm font-medium text-gray-300",
                 "radix-disabled:opacity-50",
-                "focus:outline-none select-none"
+                "select-none focus:outline-none"
               )}
             >
               {icon}
