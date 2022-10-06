@@ -3,8 +3,14 @@ import { z } from "zod";
 import { getUserId } from "../utils";
 
 export const snippetRouter = t.router({
-  all: t.procedure.input(z.string()).query(({ ctx, input }) => {
-    return ctx.prisma.snippet.findMany({ where: { listId: input } });
+  all: t.procedure.input(z.string()).query(async ({ ctx, input }) => {
+    const snippet = await ctx.prisma.snippet.findMany({ where: { listId: input } });
+
+    if (!snippet) {
+      return null;
+    }
+
+    return snippet;
   }),
 
   byId: t.procedure.input(z.string()).query(({ ctx, input }) => {
