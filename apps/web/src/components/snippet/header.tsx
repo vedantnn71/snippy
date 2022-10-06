@@ -12,6 +12,7 @@ export const SnippetHeader = () => {
   const snippet = snippetQuery.data;
   const utils = trpc.useContext();
   const [icon, setIcon] = useState<string | null>(null);
+  const [shareIcon, setShareIcon] = useState("share");
 
   const updateMutation = trpc.snippet.update.useMutation({
     onSuccess: () => {
@@ -37,6 +38,11 @@ export const SnippetHeader = () => {
       icon: val,
     });
   };
+
+  const copySnippetLink = () => {
+    const link = window.location.origin + "/snippet/" + id;
+    navigator.clipboard.writeText(link);
+  }
 
   useEffect(() => {
     if (snippetQuery.isLoading) {
@@ -78,15 +84,29 @@ export const SnippetHeader = () => {
 
         {!isReadOnly && (
           <div className="flex items-center ml-auto gap-4">
-            <Icon type="regular" name={"share"} size={20} />
-
+            <div
+              className="hover:text-green-8 cursor-pointer"
+              onClick={() => {
+                copySnippetLink();
+                setShareIcon("check");
+                setTimeout(() => {
+                  setShareIcon("share");
+                }, 1500);
+              }}
+            >
+              <Icon
+                type="regular"
+                name={shareIcon}
+                size={20} 
+              />
+            </div>
             <AlertDialog
               title={`Delete ${snippet?.name}?`}
               description="Are you sure you want to delete this snippet?"
               confirmLabel="Delete"
               onConfirm={deleteSnippet}
               trigger={
-                <div className="hover:text-red-9">
+                <div className="hover:text-red-9 cursor-pointer">
                   <Icon type="regular" name={"trash"} size={20} />
                 </div>
               }
