@@ -1,5 +1,4 @@
 import { useSnippetStore } from "@/store";
-import { useEffect } from "react";
 import { Code } from "./code";
 import { SnippetHeader } from "./header";
 
@@ -9,7 +8,7 @@ export const Snippet = () => {
   if (id === null || !id) {
     return <div></div>;
   }
-  
+
   return (
     <div className="w-full overflow-hidden">
       <SnippetHeader />
