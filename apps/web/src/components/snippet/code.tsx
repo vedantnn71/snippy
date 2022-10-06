@@ -1,7 +1,7 @@
 import { useSnippetStore } from "@/store";
 import { trpc } from "@/utils/trpc";
 import { useEffect, useState } from "react";
-import Editor, { useMonaco } from "@monaco-editor/react";
+import Editor from "@monaco-editor/react";
 import SelectLanguage from "./selectLanguage";
 
 export const Code = () => {
@@ -26,7 +26,7 @@ export const Code = () => {
   }
 
   return (
-    <div className="flex flex-col gap-4 items-start justify-start my-4 px-4">
+    <div className="flex flex-col gap-4 items-start justify-start my-4 px-6">
       <SelectLanguage value={language} setValue={updateLanguage} />
 
       <div className="rounded-xl overflow-hidden w-full z-[1]">
