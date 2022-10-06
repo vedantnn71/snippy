@@ -8,17 +8,19 @@ import { SelectIcon } from "@/components";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import cx from "classnames";
 
-export const AddList = () => {
+export const AddSnippet = () => {
   const mode = useListStore((state) => state.mode);
   const [isOpen, setIsOpen] = useState(false);
   const [name, setName] = useState("");
   const [icon, setIcon] = useState("javascript");
+  const [language, setLanguage] = useState("plaintext");
   const [error, setError] = useState<string | null>();
   const utils = trpc.useContext();
-  const mutation = trpc.list.add.useMutation({
+  const listId = useListStore((state) => state.activeList);
+  const mutation = trpc.snippet.add.useMutation({
     onSuccess: () => {
-      utils.list.all.invalidate();
-    }
+      utils.snippet.all.invalidate();
+    },
   });
 
   const addList = async () => {
@@ -32,20 +34,37 @@ export const AddList = () => {
       return;
     }
 
-    await mutation.mutateAsync({ name, icon, mode });
+    if (listId === null) {
+      setError("List can't be blank");
+      return;
+    }
+
+    await mutation.mutateAsync({
+      name,
+      icon,
+      code: "",
+      listId,
+      language,
+    });
 
     setName("");
     setError("");
     setIcon("javascript");
+    setLanguage("plaintext");
     setIsOpen(false);
-  }
+  };
 
   return (
     <DialogPrimitive.Root open={isOpen} onOpenChange={setIsOpen}>
       <DialogPrimitive.Trigger asChild>
-        <button className="hover:opacity-80 grid items-center ml-4 outline-none">
-          <Icon type="regular" name="plus" size={24} color="rgba(255,255,255,0.8)" />
-        </button>
+        <div className="group flex items-center justify-between p-6 cursor-pointer">
+          <div className="flex items-center gap-2">
+            <Icon type="regular" name="plus" size={20} color="var(--slate11)" />
+            <h1 className="text-md font-medium text-slate-11">
+              Add a new snippet
+            </h1>
+          </div>
+        </div>
       </DialogPrimitive.Trigger>
       <Transition.Root show={isOpen}>
         <Transition.Child
@@ -81,26 +100,26 @@ export const AddList = () => {
               "focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75"
             )}
           >
-            <h1 className="text-sm font-medium text-gray-100">
-              Add List
-            </h1>
+            <h1 className="text-sm font-medium text-gray-100">Add Snippet</h1>
 
             <DialogPrimitive.Description className="mt-2 text-sm font-normal text-slate-4">
-              Create a new list to organize your {mode === "snippets" ? "snippets" : "commands"}.
+              Create a new snippet in the current list
             </DialogPrimitive.Description>
 
             <div className="mt-2 space-y-2">
               <fieldset>
                 <label
-                  htmlFor="listName"
+                  htmlFor="snippetName"
                   className="text-sm font-medium text-gray-400"
                 >
                   Name
                 </label>
                 <input
-                  id="listName"
+                  id="snippetName"
                   type="text"
-                  placeholder={mode === "snippets" ? "typescript snippets" : "tmux commands"}
+                  placeholder={
+                    mode === "snippets" ? "password schema" : "tmux sessionizer"
+                  }
                   value={name}
                   onChange={(e) => setName(e.target.value)}
                   className={cx(
@@ -144,7 +163,6 @@ export const AddList = () => {
                   Add
                 </button>
               </div>
-
             </div>
 
             <DialogPrimitive.Close

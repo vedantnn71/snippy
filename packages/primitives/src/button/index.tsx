@@ -17,9 +17,9 @@ export const Button = ({
     <button
       className={cx(
         "flex items-center justify-center gap-2 rounded-xl px-4 py-3",
-        "border-[1px] border-[#4C5155] outline-none transition-all duration-200 ease-in-out",
-        sizeClasses,
+        "outline-none transition-all duration-200 ease-in-out",
         colorClasses,
+        sizeClasses,
         disabled ? "cursor-not-allowed" : "cursor-pointer",
         !disabled && "hover:scale-[98%] active:scale-95"
       )}
@@ -63,11 +63,11 @@ const getColor = (color: ButtonColor): string => {
 
   switch (color) {
     case "primary":
-      colorClass = "bg-pink-10 text-white";
+      colorClass = "bg-pink-9 text-white";
       break;
 
     case "secondary":
-      colorClass = "bg-gray-12 text-white";
+      colorClass = "border text-white";
       break;
   }
 
