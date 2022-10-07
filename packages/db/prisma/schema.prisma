@@ -45,6 +45,7 @@ model User {
   name          String?
   email         String?      @unique
   emailVerified DateTime?
+  apiKey        String?      @unique @default(cuid())
   image         String?
   accounts      Account[]
   sessions      Session[]
