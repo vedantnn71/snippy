@@ -1,16 +1,8 @@
 import { Transition } from "@headlessui/react";
-import { ReactNode, Fragment, useState } from "react";
+import { Fragment, useState } from "react";
+import { IAlertDialogProps } from "./types";
 import cx from "classnames";
 import * as AlertDialogPrimitive from "@radix-ui/react-alert-dialog";
-
-interface IAlertDialogProps {
-  title: string;
-  description: string;
-  trigger: ReactNode;
-  onConfirm?: () => void;
-  onCancel?: () => void;
-  confirmLabel?: string;
-}
 
 export const AlertDialog = ({
   title = "Are you sure?",
