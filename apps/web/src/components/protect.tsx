@@ -23,5 +23,5 @@ export const Protect = ({ children }: IProtectProps) => {
     }
   }, [session.status]);
 
-  return children;
+  return <>{children}</>;
 };
