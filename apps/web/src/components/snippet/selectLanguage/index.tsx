@@ -1,12 +1,8 @@
-import { Icon } from "@snippy/primitives";
 import { ChevronDownIcon, ChevronUpIcon } from "@radix-ui/react-icons";
+import { ISelectLanguageProps } from "./types";
+import { languages } from "./languages";
 import * as SelectPrimitive from "@radix-ui/react-select";
 import cx from "classnames";
-
-type ISelectLanguageProps = {
-  value: string;
-  setValue: (value: string) => void;
-};
 
 const SelectLanguage = ({ value, setValue }: ISelectLanguageProps) => (
   <SelectPrimitive.Root defaultValue={value} onValueChange={setValue}>
@@ -47,67 +43,3 @@ const SelectLanguage = ({ value, setValue }: ISelectLanguageProps) => (
 );
 
 export default SelectLanguage;
-
-const languages = [
-  "plaintext",
-  "javascript",
-  "typescript",
-  "python",
-  "java",
-  "c",
-  "c++",
-  "c#",
-  "go",
-  "php",
-  "ruby",
-  "rust",
-  "swift",
-  "kotlin",
-  "scala",
-  "dart",
-  "bash",
-  "html",
-  "css",
-  "json",
-  "yaml",
-  "markdown",
-  "sql",
-  "graphql",
-  "docker",
-  "nginx",
-  "apache",
-  "vim",
-  "emacs",
-  "git",
-  "powershell",
-  "shell",
-  "makefile",
-  "diff",
-  "ini",
-  "toml",
-  "xml",
-  "latex",
-  "clojure",
-  "elixir",
-  "erlang",
-  "haskell",
-  "lua",
-  "perl",
-  "r",
-  "scheme",
-  "viml",
-  "assembly",
-  "fortran",
-  "pascal",
-  "prolog",
-  "racket",
-  "verilog",
-  "zig",
-  "abap",
-  "apex",
-  "azcli",
-  "bat",
-  "bicep",
-  "coffeescript",
-  "fsharp",
-];

@@ -1,12 +1,7 @@
+import { IToastProps } from "./types";
 import * as ToastPrimitive from "@radix-ui/react-toast";
 import cx from "classnames";
-import { useState, ReactNode } from "react";
-
-type IToastProps = {
-  title: string;
-  description: string;
-  children: ReactNode;
-};
+import { useState } from "react";
 
 export const Toast = ({ title, description, children }: IToastProps) => {
   const [open, setOpen] = useState(false);

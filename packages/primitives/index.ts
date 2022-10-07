@@ -1,4 +1,3 @@
-export * from "./src/checkbox";
 export * from "./src/logo";
 export * from "./src/icon";
 export * from "./src/loading";
