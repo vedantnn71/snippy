@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
+import { ApiKeyModal } from "@/components";
 
 export const Sidebar = () => {
   const { data } = useSession();
@@ -55,7 +56,8 @@ export const Sidebar = () => {
             />
           </DropdownMenuPrimitive.Trigger>
 
-          <DropdownMenuPrimitive.Content className="bg-slate-11.5 text-cyan-8 m-2 rounded-xl px-8 py-3">
+          <DropdownMenuPrimitive.Content className="bg-slate-11.5 text-slate-8 m-2 rounded-xl px-7 py-3">
+            <ApiKeyModal />
             <DropdownMenuPrimitive.Item
               onClick={() => signOut()}
               className="align-center flex w-full cursor-pointer gap-2 outline-none"

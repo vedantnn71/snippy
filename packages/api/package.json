@@ -8,6 +8,7 @@
     "@snippy/db": "*",
     "@trpc/client": "10.0.0-proxy-beta.9",
     "@trpc/server": "10.0.0-proxy-beta.9",
+    "cuid": "^2.1.8",
     "next-auth": "^4.12.2",
     "superjson": "^1.9.1",
     "zod": "^3.18.0"
