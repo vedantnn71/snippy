@@ -4,18 +4,20 @@ import { useEffect } from "react";
 import { Icon, AlertDialog } from "@snippy/primitives";
 import { ListsHeader } from "./header";
 import cx from "classnames";
+import { EditList } from "./updateList";
 
 export const Lists = () => {
   const lists = trpc.list.all.useQuery();
   const utils = trpc.useContext();
+  const activeList = useListStore((state) => state.activeList);
+  const setActiveList = useListStore((state) => state.setActiveList);
+  const mode = useListStore((state) => state.mode);
+
   const deleteMutation = trpc.list.delete.useMutation({
     onSuccess: () => {
       utils.list.all.invalidate();
     },
   });
-  const activeList = useListStore((state) => state.activeList);
-  const setActiveList = useListStore((state) => state.setActiveList);
-  const mode = useListStore((state) => state.mode);
 
   const listsToShow = lists.data?.filter((list) => {
     if (mode === "commands") {
@@ -55,22 +57,24 @@ export const Lists = () => {
               <h1 className="text-md text-slate-6 font-medium">{list.name}</h1>
             </div>
 
-            <AlertDialog
-              title={`Delete ${list.name}?`}
-              description="Are you sure you want to delete this list?"
-              confirmLabel="Delete"
-              onConfirm={() => deleteList(list.id)}
-              trigger={
-                <span className="group-rdx-state-open:opacity-0 opacity-0 transition-all duration-500 group-hover:opacity-100 group-active:opacity-0">
-                  <Icon
-                    type="regular"
-                    name="trash"
-                    size={20}
-                    color="var(--red10)"
-                  />
-                </span>
-              }
-            />
+            <div className="group-rdx-state-open:opacity-0 opacity-0 transition-all duration-500 group-hover:opacity-100 group-active:opacity-0 flex gap-2">
+              <AlertDialog
+                title={`Delete ${list.name}?`}
+                description="Are you sure you want to delete this list?"
+                confirmLabel="Delete"
+                onConfirm={() => deleteList(list.id)}
+                trigger={
+                    <EditList id={list.id} />
+                }
+              />
+
+              <Icon
+                type="regular"
+                name="trash"
+                size={20}
+                color="var(--red10)"
+              />
+            </div>
           </div>
         ))}
       </div>

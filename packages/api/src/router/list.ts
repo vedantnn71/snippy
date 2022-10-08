@@ -17,10 +17,11 @@ export const listRouter = t.router({
         name: z.string(),
         mode: z.enum(["snippets", "commands"]).optional().default("snippets"),
         icon: z.string().optional(),
+        alias: z.string(),
       })
     )
     .mutation(async ({ ctx, input }) => {
-      const { name, icon, mode } = input;
+      const { name, icon, mode, alias } = input;
       const userId = (await getUserId(ctx)) as string;
 
       if (name === "") {
@@ -39,6 +40,7 @@ export const listRouter = t.router({
           icon,
           userId,
           isCommandList,
+          alias,
         },
       });
     }),
@@ -47,26 +49,38 @@ export const listRouter = t.router({
     .input(
       z.object({
         id: z.string(),
-        name: z.string(),
+        name: z.string().optional(),
         icon: z.string().optional(),
+        alias: z.string().optional(),
       })
     )
     .mutation(async ({ ctx, input }) => {
-      const { id, name, icon } = input;
-      const userId = (await getUserId(ctx)) as string;
+      const { id, name, icon, alias } = input;
+      const toUpdate: {
+        name?: string;
+        icon?: string;
+        alias?: string;
+      } = {};
+
+      if (name) {
+        toUpdate["name"] = name;
+      }
+
+      if (icon) {
+        toUpdate["icon"] = icon;
+      }
+
+      if (alias) {
+        toUpdate["alias"] = alias;
+      }
 
       return ctx.prisma.list.update({
         where: { id },
-        data: {
-          name,
-          icon,
-        },
+        data: toUpdate,
       });
     }),
 
   delete: t.procedure.input(z.string()).mutation(async ({ ctx, input }) => {
-    const userId = (await getUserId(ctx)) as string;
-
     return ctx.prisma.list.delete({
       where: { id: input },
     });

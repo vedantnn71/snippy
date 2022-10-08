@@ -8,21 +8,27 @@ import { SelectIcon } from "@/components";
 import * as DialogPrimitive from "@radix-ui/react-dialog";
 import cx from "classnames";
 
-export const AddList = () => {
+export type IEditListProps = {
+  id: string;
+}
+
+export const EditList = ({ id }: IEditListProps) => {
   const mode = useListStore((state) => state.mode);
-  const [isOpen, setIsOpen] = useState(false);
-  const [name, setName] = useState("");
-  const [alias, setAlias] = useState("");
-  const [icon, setIcon] = useState("javascript");
-  const [error, setError] = useState<string | null>();
   const utils = trpc.useContext();
-  const mutation = trpc.list.add.useMutation({
+  const listQuery = trpc.list.byId.useQuery(id);
+  const [isOpen, setIsOpen] = useState(false);
+  const [name, setName] = useState(listQuery.data?.name);
+  const [alias, setAlias] = useState(listQuery.data?.alias);
+  const [icon, setIcon] = useState(listQuery.data?.icon);
+  const [error, setError] = useState<string | null>();
+
+  const updateListMutation = trpc.list.update.useMutation({
     onSuccess: () => {
       utils.list.all.invalidate();
     },
   });
 
-  const addList = async () => {
+  const updateList = async () => {
     if (name === "") {
       setError("Name can't be blank");
       return;
@@ -38,12 +44,13 @@ export const AddList = () => {
       return;
     }
 
-    await mutation.mutateAsync({ name, icon, mode, alias });
+    await updateListMutation.mutateAsync({
+      id,
+      name: name!,
+      icon: icon!, 
+      alias: alias!,
+    });
 
-    setName("");
-    setAlias("");
-    setError("");
-    setIcon("javascript");
     setIsOpen(false);
   };
 
@@ -53,8 +60,8 @@ export const AddList = () => {
         <button className="ml-4 grid items-center outline-none hover:opacity-80">
           <Icon
             type="regular"
-            name="plus"
-            size={24}
+            name="pencil"
+            size={20}
             color="rgba(255,255,255,0.8)"
           />
         </button>
@@ -93,11 +100,10 @@ export const AddList = () => {
               "focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75"
             )}
           >
-            <h1 className="text-sm font-medium text-gray-100">Add List</h1>
+            <h1 className="text-sm font-medium text-gray-100">Edit List</h1>
 
             <DialogPrimitive.Description className="text-slate-4 mt-2 text-sm font-normal">
-              Create a new list to organize your{" "}
-              {mode === "snippets" ? "snippets" : "commands"}.
+              Edit your {listQuery.data?.name!} list
             </DialogPrimitive.Description>
 
             <div className="mt-4 space-y-2 flex flex-col gap-2">
@@ -176,12 +182,12 @@ export const AddList = () => {
                     "inline-flex select-none justify-center rounded-md px-6 py-2 text-sm font-medium",
                     "bg-pink-9 hover:bg-pink-10 text-white",
                     "border-none outline-none",
-                    mutation.isLoading ? "cursor-not-allowed opacity-70" : ""
+                    updateListMutation.isLoading ? "cursor-not-allowed opacity-70" : ""
                   )}
-                  onClick={addList}
+                  onClick={updateList}
                   type="submit"
                 >
-                  Add
+                  Update 
                 </button>
               </div>
             </div>
