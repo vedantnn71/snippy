@@ -79,6 +79,7 @@ model Snippet {
   list        List?   @relation(fields: [listId], references: [id])
   listId      String?
   tags        Tag[]
+  alias       String?
 
   @@map("snippets")
 }
@@ -93,6 +94,7 @@ model List {
   user          User        @relation(fields: [userId], references: [id])
   Collection    Collection? @relation(fields: [collectionId], references: [id])
   collectionId  String?
+  alias         String?
 
   @@map("lists")
 }
