@@ -29,10 +29,11 @@ export const snippetRouter = t.router({
         code: z.string(),
         listId: z.string(),
         language: z.string(),
+        alias: z.string(),
       })
     )
     .mutation(async ({ ctx, input }) => {
-      const { name, icon, mode, description, code, listId, language } = input;
+      const { name, icon, mode, description, code, listId, language, alias } = input;
       const userId = (await getUserId(ctx)) as string;
       const isCommand = mode === "command";
 
@@ -46,6 +47,7 @@ export const snippetRouter = t.router({
           listId,
           userId,
           language,
+          alias,
         },
       });
     }),
@@ -65,10 +67,11 @@ export const snippetRouter = t.router({
         code: z.string().optional(),
         listId: z.string().optional(),
         language: z.string().optional(),
+        alias: z.string().optional(),
       })
     )
     .mutation(async ({ ctx, input }) => {
-      const { id, name, icon, mode, description, code, listId, language } =
+      const { id, name, icon, mode, description, code, listId, language, alias } =
         input;
       const userId = (await getUserId(ctx)) as string;
       const isCommand = mode === "command";
@@ -84,12 +87,12 @@ export const snippetRouter = t.router({
           listId,
           userId,
           language,
+          alias,
         },
       });
     }),
 
   delete: t.procedure.input(z.string()).mutation(async ({ ctx, input }) => {
-    const userId = (await getUserId(ctx)) as string;
     return ctx.prisma.snippet.delete({ where: { id: input } });
   }),
 });
