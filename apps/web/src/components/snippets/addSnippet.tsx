@@ -15,9 +15,11 @@ export const AddSnippet = () => {
   const [icon, setIcon] = useState("javascript");
   const [language, setLanguage] = useState("plaintext");
   const [error, setError] = useState<string | null>();
+  const [alias, setAlias] = useState("");
   const utils = trpc.useContext();
   const listId = useListStore((state) => state.activeList);
-  const mutation = trpc.snippet.add.useMutation({
+
+  const snippetMutation = trpc.snippet.add.useMutation({
     onSuccess: () => {
       utils.snippet.all.invalidate();
     },
@@ -39,12 +41,13 @@ export const AddSnippet = () => {
       return;
     }
 
-    await mutation.mutateAsync({
+    await snippetMutation.mutateAsync({
       name,
       icon,
       code: "",
       listId,
       language,
+      alias,
     });
 
     setName("");
@@ -132,6 +135,31 @@ export const AddSnippet = () => {
                   required
                 />
               </fieldset>
+
+              <fieldset>
+                <label
+                  htmlFor="snippetAlias"
+                  className="text-sm font-medium text-gray-400"
+                >
+                  Alias
+                </label>
+                <input
+                  id="listName"
+                  type="text"
+                  placeholder="alias are short names for your lists"
+                  value={alias}
+                  onChange={(e) => setAlias(e.target.value)}
+                  className={cx(
+                    "bg-slate-11.5 mt-1 block w-full rounded-md",
+                    "text-gray-4 text-sm placeholder:text-gray-600",
+                    "border border-gray-700 focus-visible:border-transparent",
+                    "focus:outline-none focus-visible:ring focus-visible:ring-purple-500 focus-visible:ring-opacity-75"
+                  )}
+                  maxLength={16}
+                  required
+                />
+              </fieldset>
+
               <fieldset>
                 <label
                   htmlFor="icon"
@@ -155,7 +183,7 @@ export const AddSnippet = () => {
                     "inline-flex select-none justify-center rounded-md px-6 py-2 text-sm font-medium",
                     "bg-pink-9 hover:bg-pink-10 text-white",
                     "border-none outline-none",
-                    mutation.isLoading ? "cursor-not-allowed opacity-70" : ""
+                    snippetMutation.isLoading ? "cursor-not-allowed opacity-70" : ""
                   )}
                   onClick={addList}
                   type="submit"

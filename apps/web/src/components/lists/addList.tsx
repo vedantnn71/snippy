@@ -16,7 +16,8 @@ export const AddList = () => {
   const [icon, setIcon] = useState("javascript");
   const [error, setError] = useState<string | null>();
   const utils = trpc.useContext();
-  const mutation = trpc.list.add.useMutation({
+
+  const aliasMutation = trpc.list.add.useMutation({
     onSuccess: () => {
       utils.list.all.invalidate();
     },
@@ -38,7 +39,7 @@ export const AddList = () => {
       return;
     }
 
-    await mutation.mutateAsync({ name, icon, mode, alias });
+    await aliasMutation.mutateAsync({ name, icon, mode, alias });
 
     setName("");
     setAlias("");
@@ -137,7 +138,7 @@ export const AddList = () => {
                   Alias
                 </label>
                 <input
-                  id="listName"
+                  id="listAlias"
                   type="text"
                   placeholder="alias are short names for your lists"
                   value={alias}
@@ -176,7 +177,7 @@ export const AddList = () => {
                     "inline-flex select-none justify-center rounded-md px-6 py-2 text-sm font-medium",
                     "bg-pink-9 hover:bg-pink-10 text-white",
                     "border-none outline-none",
-                    mutation.isLoading ? "cursor-not-allowed opacity-70" : ""
+                    aliasMutation.isLoading ? "cursor-not-allowed opacity-70" : ""
                   )}
                   onClick={addList}
                   type="submit"

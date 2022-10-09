@@ -3,8 +3,8 @@ import { trpc } from "@/utils/trpc";
 import { useEffect } from "react";
 import { Icon, AlertDialog } from "@snippy/primitives";
 import { ListsHeader } from "./header";
-import cx from "classnames";
 import { EditList } from "./updateList";
+import cx from "classnames";
 
 export const Lists = () => {
   const lists = trpc.list.all.useQuery();

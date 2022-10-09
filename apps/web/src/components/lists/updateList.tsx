@@ -146,7 +146,7 @@ export const EditList = ({ id }: IEditListProps) => {
                   id="listName"
                   type="text"
                   placeholder="alias are short names for your lists"
-                  value={alias}
+                  value={alias!}
                   onChange={(e) => setAlias(e.target.value)}
                   className={cx(
                     "bg-slate-11.5 mt-1 block w-full rounded-md",
@@ -166,7 +166,7 @@ export const EditList = ({ id }: IEditListProps) => {
                 >
                   Icon
                 </label>
-                <SelectIcon value={icon} setValue={setIcon} />
+                <SelectIcon value={icon!} setValue={setIcon} />
               </fieldset>
 
               {error && (
