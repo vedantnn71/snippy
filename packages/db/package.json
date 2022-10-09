@@ -2,9 +2,11 @@
   "name": "@snippy/db",
   "version": "0.0.0",
   "main": "./index.ts",
+  "type": "module",
   "types": "./index.ts",
   "license": "MIT",
   "scripts": {
+    "build": "tsup index.ts --format esm --clean --sourcemap --minify --metafile --dts",
     "db:rm": "docker compose rm db -s -f -v",
     "db:up": "docker compose up db -d",
     "db:push": "prisma db push",
@@ -17,6 +19,7 @@
   },
   "devDependencies": {
     "prisma": "^4.3.1",
+    "tsup": "^6.2.3",
     "typescript": "^4.8.3"
   }
 }
